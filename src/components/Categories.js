@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 import Article from './Article';
 
@@ -8,6 +8,8 @@ import { getCategoryList } from '../redux/actions/categoryListAction';
 import { DivContainer, CustomInput, CardLayout } from '../styles';
 
 const Categories = () => {
+  const [keyword, setKeyword] = useState('');
+
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categoryList);
   const { loading, error, categoryList } = categories;
@@ -16,10 +18,18 @@ const Categories = () => {
     dispatch(getCategoryList());
   }, [dispatch]);
 
+  const Searching = (keyword) => (article) =>
+    article.name.toLowerCase().includes(keyword) || !keyword;
+
   return (
     <DivContainer>
       <CustomInput>
-        <input type="text" />
+        <input
+          type="search"
+          placeholder="Cari Kategori Berita"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value.toLowerCase())}
+        />
       </CustomInput>
       <CardLayout>
         {loading ? (
@@ -35,15 +45,17 @@ const Categories = () => {
             <>{error}</>
           </>
         ) : (
-          categoryList.map((category) =>
-            category.templates.map((template) =>
-              template.sections.map((section) =>
-                section.articles.map((article, index) => (
-                  <Article key={index} article={article} />
-                ))
+          categoryList
+            .filter(Searching(keyword))
+            .map((category) =>
+              category.templates.map((template) =>
+                template.sections.map((section) =>
+                  section.articles.map((article, index) => (
+                    <Article key={index} article={article} />
+                  ))
+                )
               )
             )
-          )
         )}
       </CardLayout>
     </DivContainer>

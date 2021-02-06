@@ -25,16 +25,16 @@ export const CustomInput = styled.div`
     transition: padding 0.4s;
   }
 
-  input:placeholder-shown + label {
+  input:placeholder-shown {
     color: #aaa;
     font-size: 14px;
     left: 5px;
     top: 5px;
   }
 
-  input:focus + label,
   input::placeholder {
-    color: transparent;
+    color: ${theme.colors.grey};
+    text-align: justify;
   }
 
   input:focus,

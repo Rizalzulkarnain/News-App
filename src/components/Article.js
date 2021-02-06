@@ -9,10 +9,10 @@ const Article = ({ article }) => {
         <DivArticle>
           <LinkNews href={article.url.url} target="_blank" rel="noreferrer">
             <>
-              <Title>{article.title}</Title>
               <SubTitle>
                 <i>{article.categoryName}</i>
               </SubTitle>
+              <Title>{article.title}</Title>
               <SubTitle>
                 <i>{article.publisher}</i>
               </SubTitle>

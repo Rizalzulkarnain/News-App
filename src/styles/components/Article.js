@@ -26,10 +26,11 @@ export const Title = styled.div`
   line-height: 22px;
   margin: 0;
   word-break: break-word;
+  margin-bottom: 5px;
 `;
 
 export const SubTitle = styled.div`
-  color: ${theme.colors.gey};
+  color: ${theme.colors.grey};
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
