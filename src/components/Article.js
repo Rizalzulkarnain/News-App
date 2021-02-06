@@ -10,7 +10,7 @@ const Article = ({ article }) => {
           <LinkNews href={article.url.url} target="_blank" rel="noreferrer">
             <>
               <SubTitle>
-                <i>{article.categoryName}</i>
+                Kategori Berita: <i>{article.categoryName}</i>
               </SubTitle>
               <Title>{article.title}</Title>
               <SubTitle>
